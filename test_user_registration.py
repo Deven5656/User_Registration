@@ -14,13 +14,14 @@ from user_registration import is_valid_name
 class TestUserValidation(unittest.TestCase):
 
     def test_is_valid_name(self):
-  
-        self.assertTrue(is_valid_name("Alice"))
-        self.assertTrue(is_valid_name("Bob"))
+        # Valid names
+        self.assertTrue(is_valid_name("Gupta"))
+        self.assertTrue(is_valid_name("Bhoir"))
 
-        self.assertFalse(is_valid_name("alice"))
-        self.assertFalse(is_valid_name("Al"))
-        self.assertFalse(is_valid_name("Alicia123"))
+        # Invalid names
+        self.assertFalse(is_valid_name("gupta"))
+        self.assertFalse(is_valid_name("DG"))
+        self.assertFalse(is_valid_name("Gupta123"))
 
 
 if __name__ == "__main__":
