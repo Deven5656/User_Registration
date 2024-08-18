@@ -3,7 +3,7 @@
     @Date: 17-08-2024
     @Last Modified by: Deven Gupta
     @Last Modified time: 17-08-2024 
-    @Title : Python program to create a logger using logging module
+    @Title : Python program to create a logger using logging module 
 
 '''
 
