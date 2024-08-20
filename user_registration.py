@@ -1,8 +1,8 @@
 '''
     @Author: Deven Gupta
-    @Date: 18-08-2024
+    @Date: 20-08-2024
     @Last Modified by: Deven Gupta
-    @Last Modified time: 18-08-2024 
+    @Last Modified time: 20-08-2024 
     @Title : Python program for User Registration Problem
 
 '''
@@ -51,14 +51,22 @@ def is_valid_mobile(mobile):
 def is_valid_password(password):
     """
     Description:
-        This function is use to match the pattern in email
+        This function is use to match the pattern in password
     Parameters:
         password (str): password of user
     Returns:
         boolean : True if match else False
     """
-    pattern=r'^(?=.*[A-Z])(?=.*\d).{8,}$'
-    return bool(re.match(pattern, password))
+    #Other Method
+    # pattern= r"^(?=.*[A-Z])(?=.*\d)(?=(?:[^!@#$%^&*()]*[!@#$%^&*()]){1}[^!@#$%^&*()]*$).{8,}$"
+    
+    special_characters = r'!@#$%^&*()_+-=[]{}|;:,.<>?'
+    
+    if not re.match(r'^(?=.*[A-Z])(?=.*\d).{8,}$', password):
+        return False
+    
+    special_char_count = sum(1 for char in password if char in special_characters)
+    return special_char_count == 1
 
 def valid_input(input_msg, validation_func, error_msg):
     """
@@ -109,7 +117,7 @@ def main():
     password = valid_input(
         "Enter your password: ",
         is_valid_password,
-        "Invalid password. It must be at least 8 characters long,Atleast 1 Upper Case"
+        "Invalid password. It must be at least 8 characters long, Atleast 1 Upper Case, Atleast 1 numeric number and has exactly Special Character"
     )
     
     logger.info(f"First Name: '{first_name}' - Valid")
