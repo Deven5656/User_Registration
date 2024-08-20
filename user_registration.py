@@ -48,58 +48,76 @@ def is_valid_mobile(mobile):
     pattern = r'^\d{2} \d{10}$'
     return bool(re.match(pattern, mobile))
 
-
-def validate_user(first_name, last_name, email, mobile):
+def is_valid_password(password):
     """
     Description:
-        This function is use to call other functions
+        This function is use to match the pattern in email
     Parameters:
-        first_name (str): First name of user
-        last_name (str): Last name of user
-        email (str) : mail of user
-        mobile (str): mobile number of user
+        password (str): password of user
     Returns:
-        tuple : containing boolean values
+        boolean : True if match else False
     """
-    valid_first = is_valid_name(first_name)
-    valid_last = is_valid_name(last_name)
-    valid_email = is_valid_email(email)
-    valid_mobile = is_valid_mobile(mobile)
-    return valid_first, valid_last, valid_email, valid_mobile
+    pattern=r"^.{8,}$"
+    return bool(re.match(pattern, password))
 
+def valid_input(input_msg, validation_func, error_msg):
+    """
+    Description:
+        This function repeatedly takes the user input until the input passes the valid 
+    Parameters:
+        input_msg (str): The message displayed to the user when asking for input.
+        validation_func (function): A function that return True if it's valid, otherwise False.              
+        error_msg (str): The message displayed to the user when the input is invalid.
+    Returns:
+        str: The valid user input.
+    """
+    while True:
+        user_input = input(input_msg)
+        if validation_func(user_input):
+            return user_input
+        else:
+            print(error_msg)
 
 def main():
-        
+
     logger=create_logger('User_Registration')
-
-    first_name = input("Enter your first name: ")
-    last_name = input("Enter your last name: ")
-    email = input("Enter your email: ")
-    mobile = input("Enter your mobile number (e.g., 91 9765859088): ")
     
-    valid_first, valid_last, valid_email, valid_mobile = validate_user(first_name, last_name, email, mobile)
-
-    if valid_first:
-        logger.info(f"First Name: '{first_name}' - Valid")
-    else:
-        logger.info(f"First Name: '{first_name}' - Invalid")
-
-    if valid_last:
-        logger.info(f"Last Name: '{last_name}' - Valid")
-    else:
-        logger.info(f"Last Name: '{last_name}' - Invalid")
-
-    if valid_email:
-        logger.info(f"Email: '{email}' - Valid")
-    else:
-        logger.info(f"Email: '{email}' - Invalid")
-
-    if valid_mobile:
-        logger.info(f"Mobile: '{mobile}' - Valid")
-    else:
-        logger.info(f"Mobile: '{mobile}' - Invalid")
+    first_name = valid_input(
+        "Enter your first name: ",
+        is_valid_name,
+        "Invalid first name. It must start with an uppercase letter and be at least 3 characters long."
+    )
     
-   
+    last_name = valid_input(
+        "Enter your last name: ",
+        is_valid_name,
+        "Invalid last name. It must start with an uppercase letter and be at least 3 characters long."
+    )
+    
+    email = valid_input(
+        "Enter your email: ",
+        is_valid_email,
+        "Invalid email,Format for is 'deven123@gmail.com'."
+    )
+    
+    mobile = valid_input(
+        "Enter your mobile number (e.g., 91 9765859088): ",
+        is_valid_mobile,
+        "Invalid mobile number,Format for is 'XX XXXXXXXXXX'."
+    )
+    
+    password = valid_input(
+        "Enter your password: ",
+        is_valid_password,
+        "Invalid password. It must be at least 8 characters long"
+    )
+    
+    logger.info(f"First Name: '{first_name}' - Valid")
+    logger.info(f"Last Name: '{last_name}' - Valid")
+    logger.info(f"Email: '{email}' - Valid")
+    logger.info(f"Mobile: '{mobile}' - Valid")
+    logger.info(f"Password: '{password}' - Valid")
+    logger.info(f"User Successfully Registered")
+
 if __name__ == "__main__":
     main()
-
