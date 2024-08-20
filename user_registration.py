@@ -57,7 +57,8 @@ def is_valid_password(password):
     Returns:
         boolean : True if match else False
     """
-    pattern=r"^.{8,}$"
+    pattern=r'^(?=.*[A-Z]).{8,}$'
+
     return bool(re.match(pattern, password))
 
 def valid_input(input_msg, validation_func, error_msg):
@@ -109,7 +110,7 @@ def main():
     password = valid_input(
         "Enter your password: ",
         is_valid_password,
-        "Invalid password. It must be at least 8 characters long"
+        "Invalid password. It must be at least 8 characters long,Atleast 1 Upper Case"
     )
     
     logger.info(f"First Name: '{first_name}' - Valid")
