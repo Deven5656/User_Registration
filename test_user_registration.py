@@ -1,8 +1,8 @@
 '''
     @Author: Deven Gupta
-    @Date: 18-08-2024
+    @Date: 20-08-2024
     @Last Modified by: Deven Gupta
-    @Last Modified time: 18-08-2024 
+    @Last Modified time: 20-08-2024 
     @Title : TestCase
 
 '''
@@ -46,13 +46,13 @@ class TestUserValidation(unittest.TestCase):
     def test_is_valid_password(self):
         # Valid passwords
         self.assertTrue(is_valid_password("Password@123"))
-        self.assertTrue(is_valid_password("Pass1223"))
-        self.assertTrue(is_valid_password("PassTF12"))
+        self.assertTrue(is_valid_password("Pass$1223"))
+        self.assertTrue(is_valid_password("Pass#TF12"))
 
         # Invalid passwords
         self.assertFalse(is_valid_password("Password@"))
-        self.assertFalse(is_valid_password("password@123"))
-        self.assertFalse(is_valid_password("validpass123"))
+        self.assertFalse(is_valid_password("Password@#123"))
+        self.assertFalse(is_valid_password("Validpass123"))
 
 
 
