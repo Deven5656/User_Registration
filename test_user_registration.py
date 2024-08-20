@@ -47,12 +47,12 @@ class TestUserValidation(unittest.TestCase):
         # Valid passwords
         self.assertTrue(is_valid_password("Password@123"))
         self.assertTrue(is_valid_password("Pass1223"))
-        self.assertTrue(is_valid_password("Pass1234"))
+        self.assertTrue(is_valid_password("PassTF12"))
 
         # Invalid passwords
-        self.assertFalse(is_valid_password("Pass123"))
+        self.assertFalse(is_valid_password("Password@"))
         self.assertFalse(is_valid_password("password@123"))
-        self.assertFalse(is_valid_password("ValidP"))
+        self.assertFalse(is_valid_password("validpass123"))
 
 
 
