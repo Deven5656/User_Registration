@@ -8,7 +8,7 @@
 '''
 
 import unittest
-from user_registration import is_valid_name, is_valid_email, is_valid_mobile
+from user_registration import is_valid_name, is_valid_email, is_valid_mobile, is_valid_password
 
 
 class TestUserValidation(unittest.TestCase):
@@ -42,6 +42,17 @@ class TestUserValidation(unittest.TestCase):
         self.assertFalse(is_valid_mobile("919765859088"))
         self.assertFalse(is_valid_mobile("91 992233778"))
         self.assertFalse(is_valid_mobile("91 12345678910"))
+
+    def test_is_valid_password(self):
+        # Valid passwords
+        self.assertTrue(is_valid_password("Password@123"))
+        self.assertTrue(is_valid_password("Pass1223"))
+        self.assertTrue(is_valid_password("pass1234"))
+
+        # Invalid passwords
+        self.assertFalse(is_valid_password("pass123"))
+        self.assertFalse(is_valid_password("code@1"))
+        self.assertFalse(is_valid_password("ValidP"))
 
 
 
