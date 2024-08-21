@@ -31,8 +31,9 @@ def is_valid_email(email):
     Returns:
         boolean : True if match else False
     """
-
-    pattern = r'^[a-zA-Z0-9._%+-]+(?:\.[a-zA-Z0-9._%+-]+)*@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$'
+    #other method
+    # pattern = r'(?!.*\.\.)(?!^\.)([a-zA-Z0-9._%+-])+(?<!\.)@([a-zA-Z0-9-]+\.[a-zA-Z]{2,})(\.[a-zA-Z]{2,})?$'
+    pattern = r'^[\w]+([._%+-][\w]+)*@[a-zA-Z0-9]+\.[a-zA-Z]{2,}(\.[a-zA-Z]{2,})?$'
     return bool(re.match(pattern, email))
 
 def is_valid_mobile(mobile):
